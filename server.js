@@ -10,7 +10,7 @@ require('dotenv').config();
 const saltRounds = 10;
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: process.env.FRONTEND_URL,
   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
   credentials: true
 }));
