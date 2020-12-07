@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 
 function makeToken (userID) {
     let token = jwt.sign({userID}, process.env.AUTH_TOKEN);
