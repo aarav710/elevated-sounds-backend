@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const constants = require('./constants');
 const compression = require('compression');
 const bcrypt = require('bcrypt');
@@ -8,6 +9,11 @@ const utilsFunctions = require('./utils');
 require('dotenv').config();
 const saltRounds = 10;
 app.use(express.json());
+app.use(cors({
+  origin: 'http://localhost:3001',
+  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+  credentials: true
+}));
 app.use(cookieParser());
 app.use(compression());
 app.use(express.static('images'));
