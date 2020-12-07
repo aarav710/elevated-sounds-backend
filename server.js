@@ -123,4 +123,4 @@ app.post('/buyItem', (req, res) => {
   } else res.status(401).end();
 });
 
-app.listen(3000);
+app.listen(process.env.PORT);
