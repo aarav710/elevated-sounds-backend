@@ -6,7 +6,6 @@ const compression = require('compression');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const utilsFunctions = require('./utils');
-require('dotenv').config();
 const saltRounds = 10;
 app.use(express.json());
 app.use(cors({
