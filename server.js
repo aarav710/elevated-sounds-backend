@@ -78,7 +78,7 @@ app.get('/cart', (req, res) => {
 );
 
 app.get('/logout', (req, res) => {
-  res.cookie('jwt', '', {maxAge: 1});
+  res.cookie('jwt', '', {maxAge: 1, secure: true, sameSite:"None", httpOnly: true});
   res.status(200).end();
 });
 
