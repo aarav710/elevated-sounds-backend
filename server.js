@@ -12,7 +12,7 @@ app.use(cors({
   origin: process.env.FRONTEND_URL,
   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', '*']
 }));
 app.use(cookieParser());
 app.use(compression());
