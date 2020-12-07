@@ -13,7 +13,7 @@ app.use(cookieParser());
 app.use(compression());
 app.use(express.static('images'));
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: process.env.BACKEND_URL,
   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
   credentials: true
 }));
