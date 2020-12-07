@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
 const constants = require('./constants');
 const compression = require('compression');
 const bcrypt = require('bcrypt');
@@ -12,11 +11,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(compression());
 app.use(express.static('images'));
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-  credentials: true
-}));
 const db = require('knex')({
   client: 'pg',
   connection: process.env.DATABASE_URL
