@@ -20,10 +20,8 @@ app.use(cors({
 const db = require('knex')({
   client: 'pg',
   connection: {
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_DATABASE,
+    host: process.env.DATABASE_URL,
+    ssl: true
   }
 });
 
