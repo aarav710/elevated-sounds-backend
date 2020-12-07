@@ -44,7 +44,7 @@ app.post('/register', (req, res) => {
     db.returning('user_id')
       .insert({ email_id: req.body.IDofuser, password: hash }).into('users')
       .then(userID => {
-        res.cookie('jwt', utilsFunctions.makeToken(userID), {httpOnly: true, maxAge: constants.maxAge, secure: true});
+        res.cookie('jwt', utilsFunctions.makeToken(userID[0]), {httpOnly: true, maxAge: constants.maxAge, secure: true});
         res.json(userID[0]);
       }
     )
