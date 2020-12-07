@@ -11,7 +11,8 @@ app.use(express.json());
 app.use(cors({
   origin: process.env.FRONTEND_URL,
   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-  credentials: true
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(cookieParser());
 app.use(compression());
