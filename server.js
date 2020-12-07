@@ -30,7 +30,7 @@ the url links to categories button and the latest product etc.
 */
 
 app.get('/', (req, res) => db.select().from('products').orderBy('no_of_orders', 'desc').limit(10)
-  .then(products => res.json(products)));
+  .then(products => res.json(products))).catch(console.log('error oops!'));
 
 app.get('/banner', (req, res) => db.select('product_id').from('products')
   .where('imageurl', '=', 'banner.jpg')
