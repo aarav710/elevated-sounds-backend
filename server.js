@@ -44,7 +44,7 @@ app.post('/register', (req, res) => {
     db.returning('user_id')
       .insert({ email_id: req.body.IDofuser, password: hash }).into('users')
       .then(userID => {
-        res.cookie('jwt', utilsFunctions.makeToken(userID), {httpOnly: true, maxAge: constants.maxAge, secure: true});
+        res.cookie('jwt', utilsFunctions.makeToken(userID), {httpOnly: true, maxAge: constants.maxAge, secure: true, sameSite:"None"});
         res.json(userID[0]);
       }
     )
@@ -56,7 +56,7 @@ app.post('/signin', (req, res) => {
     userInformation => {
       bcrypt.compare(req.body.password, userInformation[0].password, function (err, result) {
         if (result) {
-          res.cookie('jwt', utilsFunctions.makeToken(userInformation[0].user_id), {httpOnly: true, maxAge:constants.maxAge, secure: true});
+          res.cookie('jwt', utilsFunctions.makeToken(userInformation[0].user_id), {httpOnly: true, maxAge:constants.maxAge, secure: true, sameSite:"None"});
           res.json(userInformation[0].user_id);
         }
         else res.json(null);
