@@ -19,10 +19,7 @@ app.use(cors({
 }));
 const db = require('knex')({
   client: 'pg',
-  connection: {
-    connectString: process.env.DATABASE_URL,
-    ssl: true
-  }
+  connection: process.env.DATABASE_URL
 });
 
 /* gets all the necessary things required for the website, such as the recommended products info, 
