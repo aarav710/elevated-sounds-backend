@@ -44,7 +44,7 @@ app.post('/register', (req, res) => {
     db.returning('user_id')
       .insert({ email_id: req.body.IDofuser, password: hash }).into('users')
       .then(userID => {
-        res.cookie('jwt', utilsFunctions.makeToken(userID), {httpOnly: true, maxAge: constants.maxAge, secure: true, sameSite:"None"});
+        res.cookie('jwt', utilsFunctions.makeToken(userID), {httpOnly: true, maxAge: constants.maxAge, secure: true, sameSite:"Strict"});
         res.json(userID[0]);
       }
     )
@@ -56,7 +56,7 @@ app.post('/signin', (req, res) => {
     userInformation => {
       bcrypt.compare(req.body.password, userInformation[0].password, function (err, result) {
         if (result) {
-          res.cookie('jwt', utilsFunctions.makeToken(userInformation[0].user_id), {httpOnly: true, maxAge:constants.maxAge, secure: true, sameSite:"None"});
+          res.cookie('jwt', utilsFunctions.makeToken(userInformation[0].user_id), {httpOnly: true, maxAge:constants.maxAge, secure: true, sameSite:"Strict"});
           res.json(userInformation[0].user_id);
         }
         else res.json(null);
@@ -78,7 +78,7 @@ app.get('/cart', (req, res) => {
 );
 
 app.get('/logout', (req, res) => {
-  res.cookie('jwt', '', {maxAge: 1, secure: true, sameSite:"None", httpOnly: true});
+  res.cookie('jwt', '', {maxAge: 1, secure: true, sameSite:"Strict", httpOnly: true});
   res.status(200).end();
 });
 
