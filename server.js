@@ -14,6 +14,7 @@ app.use(cors({
   credentials: true,
   allowedHeaders: ['Content-Type', '*']
 }));
+app.set("trust proxy", 1);
 app.use(cookieParser());
 app.use(compression());
 app.use(express.static('images'));
@@ -23,8 +24,7 @@ const db = require('knex')({
 });
 
 /* gets all the necessary things required for the website, such as the recommended products info, 
-the url links to categories button and the latest product etc.
-*/
+the url links to categories button and the latest product etc.*/
 
 app.get('/', (req, res) => db.select().from('products').orderBy('no_of_orders', 'desc').limit(10)
   .then(products => res.json(products)));
